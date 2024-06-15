@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bae8e4f6-295c-4164-8b60-e96d042f5c06" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Neural Network Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Activation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Datasets.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Layer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Matrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/NeuralNetwork.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tests/AllTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tests/MatrixTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tests/NeuralNetworkTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tests/UtilsTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="NeuralNetworkTest.testFeedForwardBigNetwork" />
+    </enabled-run-configurations>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2h7DRY4Gn3sSGoMcYbKbTG6cbb9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Network.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NeuralNetwork.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.All Tests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MatrixTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NeuralNetworkTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NeuralNetworkTest.testFeedForward.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NeuralNetworkTest.testFeedForwardBigNetwork.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NeuralNetworkTest.testFeedForwardMultipleOutputs.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtilsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtilsTest.leakyReLUWithArray.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtilsTest.reLU.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtilsTest.reLUWithArray.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtilsTest.sigmoidWithArray.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtilsTest.tanhWithArray.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtilsTest.testDot.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.appearance&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="Main.Utils.Activation" />
+    </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="Main" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main.NeuralNetwork" />
+      <module name="Neural Network Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All Tests" type="JUnit" factoryName="JUnit">
+      <module name="Neural Network Project" />
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.AllTests" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NeuralNetworkTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Neural Network Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NeuralNetworkTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NeuralNetworkTest.testFeedForward" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Neural Network Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NeuralNetworkTest" />
+      <option name="METHOD_NAME" value="testFeedForward" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NeuralNetworkTest.testFeedForwardBigNetwork" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Neural Network Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NeuralNetworkTest" />
+      <option name="METHOD_NAME" value="testFeedForwardBigNetwork" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NeuralNetworkTest.testFeedForwardMultipleOutputs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Neural Network Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NeuralNetworkTest" />
+      <option name="METHOD_NAME" value="testFeedForwardMultipleOutputs" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Neural Network Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.UtilsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.All Tests" />
+      <item itemvalue="JUnit.NeuralNetworkTest" />
+      <item itemvalue="JUnit.NeuralNetworkTest.testFeedForward" />
+      <item itemvalue="JUnit.NeuralNetworkTest.testFeedForwardBigNetwork" />
+      <item itemvalue="JUnit.NeuralNetworkTest.testFeedForwardMultipleOutputs" />
+      <item itemvalue="JUnit.UtilsTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.NeuralNetworkTest.testFeedForwardBigNetwork" />
+        <item itemvalue="JUnit.NeuralNetworkTest" />
+        <item itemvalue="JUnit.NeuralNetworkTest.testFeedForwardMultipleOutputs" />
+        <item itemvalue="JUnit.NeuralNetworkTest.testFeedForward" />
+        <item itemvalue="JUnit.UtilsTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-3183f394aec4-74f1fbcb" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bae8e4f6-295c-4164-8b60-e96d042f5c06" name="Changes" comment="" />
+      <created>1716936215526</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716936215526</updated>
+      <workItem from="1716936216852" duration="3140000" />
+      <workItem from="1717013847602" duration="5492000" />
+      <workItem from="1717034838912" duration="2204000" />
+      <workItem from="1717076082777" duration="1144000" />
+      <workItem from="1717175034446" duration="1973000" />
+      <workItem from="1717434942347" duration="599000" />
+      <workItem from="1717816602595" duration="39000" />
+      <workItem from="1718027428171" duration="18008000" />
+      <workItem from="1718112288735" duration="2421000" />
+      <workItem from="1718137659597" duration="17887000" />
+      <workItem from="1718209776265" duration="2555000" />
+      <workItem from="1718225188968" duration="19431000" />
+      <workItem from="1718381897149" duration="599000" />
+      <workItem from="1718469342860" duration="68000" />
+      <workItem from="1718469652567" duration="15333000" />
+      <workItem from="1718490008544" duration="3383000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/src/Main/Matrix.java</url>
+          <line>87</line>
+          <properties class="Main.Matrix" method="dot">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/src/Main/Utils.java</url>
+          <line>19</line>
+          <properties class="Main.Utils" method="activation">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/src/Main/Matrix.java</url>
+          <line>110</line>
+          <properties class="Main.Matrix" method="hadamardProduct">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Tests/NeuralNetworkTest.java</url>
+          <line>208</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="26" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Main.Matrix" memberName="numCols" />
+        <PinnedItemInfo parentTag="Main.Matrix" memberName="arr" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
