@@ -1,7 +1,6 @@
 package Main;
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.IntStream;
 
 public class NeuralNetwork {
@@ -15,26 +14,19 @@ public class NeuralNetwork {
     double[][] trainingOutputs;
     private static final double LEARNING_RATE = 0.01;
     public static final double EPS = 0.1;
-    private static final double MOMENTUM = 0.9;
     private final Activation INNER_ACTIVATION;
     private final Activation OUTER_ACTIVATION;
     private Layer[] layers;
-    private int LAST_LAYER;
     private long storedTime;
 
     public static void main(String[] args) {
-        int NUM_TRIALS = 10;
         int NUM_EPOCHS = 10000;
-        //NeuralNetwork net = Datasets.getAdder(2);
-        //Datasets.printIO(net.trainingInputs, net.trainingOutputs);
-        //NeuralNetwork.trainOnce(Datasets.getAdder(4), NUM_EPOCHS, true);
-        NeuralNetwork.runBenchmarks(Datasets.getAdder(4), NUM_TRIALS, NUM_EPOCHS);
+        NeuralNetwork.trainOnce(Datasets.getXOR(), NUM_EPOCHS, true);
 
     }
     public static void trainOnce(NeuralNetwork network, int NUM_EPOCHS, boolean verbose) {
         network.storedTime = System.currentTimeMillis();
         network.train(NUM_EPOCHS, 0, 1E-5, verbose);
-        network.printAllTrainingValuesForAdderInDecimal(true);
         network.printTimeDetails(NUM_EPOCHS);
         network.printCostDetails();
     }
@@ -79,7 +71,6 @@ public class NeuralNetwork {
         this.networkOuts = new double[numLayers + 1][];
         this.INNER_ACTIVATION = innerActivation;
         this.OUTER_ACTIVATION = outerActivation;
-        this.LAST_LAYER = numLayers - 1;
         this.storedTime = System.currentTimeMillis();
         initLayers(layers);
     }
@@ -273,8 +264,6 @@ public class NeuralNetwork {
         return Matrix.toOneDimensionalArray(result);
     }
     public void train(int epochs, int batchSize, double errorThreshold, boolean verbose) {
-        int numberOfInputs = trainingInputs.length;
-        //int trainingSetIndex = 0;
         for (int epoch = 0; epoch < epochs; epoch++) {
             this.backprop();
             if (epoch % 100 == 0 && costFunction(this.trainingOutputs, this.feedForward(this.trainingInputs)) < errorThreshold) {

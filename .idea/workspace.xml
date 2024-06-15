@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bae8e4f6-295c-4164-8b60-e96d042f5c06" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Neural Network Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Activation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Datasets.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Layer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Matrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/NeuralNetwork.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tests/AllTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tests/MatrixTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tests/NeuralNetworkTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tests/UtilsTest.java" afterDir="false" />
+    <list default="true" id="bae8e4f6-295c-4164-8b60-e96d042f5c06" name="Changes" comment="Created">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Datasets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Datasets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/NeuralNetwork.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,12 +237,36 @@
       <workItem from="1718381897149" duration="599000" />
       <workItem from="1718469342860" duration="68000" />
       <workItem from="1718469652567" duration="15333000" />
-      <workItem from="1718490008544" duration="3383000" />
+      <workItem from="1718490008544" duration="3977000" />
     </task>
+    <task id="LOCAL-00001" summary="Created">
+      <option name="closed" value="true" />
+      <created>1718495000036</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718495000036</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

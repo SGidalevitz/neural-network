@@ -1,54 +1,7 @@
 package Main;
 
 public class Datasets {
-    public static NeuralNetwork getTwoBitAdder() {
-        int[] networkTopology = {4, 4, 4, 3};
-        double[][] input_data = {
-                {0, 0,     0, 0},
-                {0, 0,     0, 1},
-                {0, 0,     1, 0},
-                {0, 0,     1, 1},
 
-                {0, 1,     0, 0},
-                {0, 1,     0, 1},
-                {0, 1,     1, 0},
-                {0, 1,     1, 1},
-
-                {1, 0,     0, 0},
-                {1, 0,     0, 1},
-                {1, 0,     1, 0},
-                {1, 0,     1, 1},
-
-                {1, 1,     0, 0},
-                {1, 1,     0, 1},
-                {1, 1,     1, 0},
-                {1, 1,     1, 1},
-        };
-        double[][] target_data = {
-                {0, 0, 0},
-                {0, 0, 1},
-                {0, 1, 0},
-                {0, 1, 1},
-
-                {0, 0, 1},
-                {0, 1, 0},
-                {0, 1, 1},
-                {1, 0, 0},
-
-                {0, 1, 0},
-                {0, 1, 1},
-                {1, 0, 0},
-                {1, 0, 1},
-
-                {0, 1, 1},
-                {1, 0, 0},
-                {1, 0, 1},
-                {1, 1, 0},
-        };
-        NeuralNetwork result = new NeuralNetwork(networkTopology);
-        result.setTrainingIO(input_data, target_data);
-        return result;
-    }
     public static NeuralNetwork getXOR() {
         int[] networkTopology = {2, 3, 1};
         NeuralNetwork network = new NeuralNetwork(networkTopology);
@@ -150,18 +103,6 @@ public class Datasets {
                 {1},
                 {0}
         };
-        network.setTrainingIO(input_data, output_data);
-        return network;
-    }
-    public static NeuralNetwork getSquared() {
-        int[] networkTopology = {1, 3, 3, 1};
-        NeuralNetwork network = new NeuralNetwork(networkTopology);
-        double[][] input_data = new double[10][1];
-        double[][] output_data = new double[10][1];
-        for (int i = 0; i < 10; i++) {
-            input_data[i] = new double[]{i};
-            output_data[i] = new double[]{i * i};
-        }
         network.setTrainingIO(input_data, output_data);
         return network;
     }
