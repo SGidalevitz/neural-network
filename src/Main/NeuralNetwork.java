@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -24,20 +26,61 @@ public class NeuralNetwork {
     private long storedTime;
 
     public static void main(String[] args) {
-        NeuralNetwork network = Datasets.getAddFour();
-        for (int i = 0; i < 1000; i++) {
-            double[][][] io = Datasets.getIOForFourAdder(100);
-            network.setTrainingIO(io[0], io[1]);
-            network.train(10000, 0, 1E-5, false);
-            System.out.println(i);
-        }
-        saveNetwork(network, "four-adder", true);
+        NeuralNetwork network = Datasets.getMnist();
+        trainOnce(network, 100000, true);
+        saveNetwork(network, "mnist-net", false);
     }
     public static void trainOnce(NeuralNetwork network, int NUM_EPOCHS, boolean verbose) {
         network.storedTime = System.currentTimeMillis();
         network.train(NUM_EPOCHS, 0, 1E-5, verbose);
         network.printTimeDetails(NUM_EPOCHS);
         network.printCostDetails();
+    }
+    // TODO: implement proper batchTrain (this one doesn't work properly) and get MNIST to work.
+    public static void batchTrain(NeuralNetwork network, int NUM_EPOCHS, int numBatches, boolean verbose) {
+        double[][] originalTrainingInputs = network.trainingInputs;
+        double[][] originalTrainingOutputs = network.trainingOutputs;
+        int samplesPerBatch = network.trainingInputs.length / numBatches;
+        ArrayList<InputOutputBatch> batchesIO = new ArrayList<>();
+        int overallSampleIndex = 0;
+        for (int batchIndex = 0; batchIndex < numBatches; batchIndex++) {
+            double[][] inputBatch = new double[samplesPerBatch][network.inputLength];
+            double[][] outputBatch = new double[samplesPerBatch][network.outputLength];
+            for (int batchSampleIndex = 0; batchSampleIndex < samplesPerBatch; batchSampleIndex++) {
+                inputBatch[batchSampleIndex] = network.trainingInputs[overallSampleIndex];
+                outputBatch[batchSampleIndex] = network.trainingOutputs[overallSampleIndex];
+                overallSampleIndex++;
+            }
+            batchesIO.add(new InputOutputBatch(inputBatch, outputBatch));
+        }
+
+        double[][] leftoverInputs = new double[network.trainingInputs.length - overallSampleIndex][network.inputLength];
+        double[][] leftoverOutputs = new double[network.trainingInputs.length - overallSampleIndex][network.outputLength];
+        batchesIO.add(new InputOutputBatch(leftoverInputs, leftoverOutputs));
+        Collections.shuffle(batchesIO);
+        for (int batchIndex = 0; batchIndex < numBatches; batchIndex++) {
+            InputOutputBatch batchIO = batchesIO.get(batchIndex);
+            network.trainingInputs = batchIO.inputBatch;
+            network.trainingOutputs = batchIO.outputBatch;
+            // It's okay for this division to be approximate
+            for (int i = 0; i < NUM_EPOCHS; i++) {
+                network.backprop();
+            }
+            System.out.println(network.costFunction());
+
+        }
+        // Restore old training IO so that cost function works well
+
+        network.trainingInputs = originalTrainingInputs;
+        network.trainingOutputs = originalTrainingOutputs;
+    }
+    static class InputOutputBatch {
+        public double[][] inputBatch;
+        public double[][] outputBatch;
+        public InputOutputBatch(double[][] inputBatch, double[][] outputBatch) {
+            this.inputBatch = inputBatch;
+            this.outputBatch = outputBatch;
+        }
     }
     public static void saveNetwork(NeuralNetwork network, String name, boolean autoOverwrite) {
         String path = "data/" + name + ".txt";
@@ -139,7 +182,7 @@ public class NeuralNetwork {
             NeuralNetwork network = new NeuralNetwork(originalNetwork.layerLengths);
             network.setTrainingIO(originalNetwork.trainingInputs, originalNetwork.trainingOutputs);
             network.train(NUM_EPOCHS, 0, 1E-5, false);
-            totalCost += network.costFunction(network.trainingOutputs, network.feedForward(network.trainingInputs));
+            totalCost += network.costFunction();
             System.out.printf("%d/%d <- %.1f milliseconds\n", i + 1, NUM_TRIALS, System.currentTimeMillis() - trialStartTime);
         }
         long totalTime = System.currentTimeMillis() - initialTime;
@@ -149,7 +192,7 @@ public class NeuralNetwork {
     }
 
     public void printCostDetails() {
-        System.out.printf("Cost: %f\n", this.costFunction(trainingOutputs, feedForward(trainingInputs)));
+        System.out.printf("Cost: %f\n", this.costFunction());
     }
 
     public void printTimeDetails(int numEpochs) {
@@ -253,7 +296,7 @@ public class NeuralNetwork {
         Weights, Biases
     }
     private Matrix finiteDiff(int layerIndex, Difference typeOfDifference) {
-        double originalCost = costFunction(trainingOutputs, feedForward(trainingInputs));
+        double originalCost = costFunction();
         Layer currentLayer = this.layers[layerIndex];
         Matrix currentLayerValues = switch (typeOfDifference) {
             case Weights ->  currentLayer.weights;
@@ -264,7 +307,7 @@ public class NeuralNetwork {
             for (int colIndex = 0; colIndex < currentLayerValues.getNumCols(); colIndex++) {
                 double originalValue = currentLayerValues.get(rowIndex, colIndex);
                 currentLayerValues.add(rowIndex, colIndex, EPS);
-                double newCost = costFunction(trainingOutputs, feedForward(trainingInputs));
+                double newCost = costFunction();
                 double difference = (newCost - originalCost) / EPS;
                 differences.set(rowIndex, colIndex, -difference);
                 currentLayerValues.set(rowIndex, colIndex, originalValue);
@@ -358,6 +401,9 @@ public class NeuralNetwork {
         sum /= (2 * outputLength);
         return sum;
     }
+    public double costFunction() {
+        return costFunction(this.trainingOutputs, this.feedForward(this.trainingInputs));
+    }
     public double costFunction(double[][] expectedOutputs, double[][] actualOutputs) {
         double totalTrainingExamples = expectedOutputs.length;
         double totalCost = IntStream.range(0, expectedOutputs.length).mapToDouble(i -> costFunction(expectedOutputs[i], actualOutputs[i])).sum();
@@ -372,14 +418,14 @@ public class NeuralNetwork {
     public void train(int epochs, int batchSize, double errorThreshold, boolean verbose) {
         for (int epoch = 0; epoch < epochs; epoch++) {
             this.backprop();
-            if (epoch % 100 == 0 && costFunction(this.trainingOutputs, this.feedForward(this.trainingInputs)) < errorThreshold) {
+            if (epoch % 100 == 0 && costFunction() < errorThreshold) {
                 if (verbose) {
                     System.out.println("[TRAIN] Training ended early because error threshold was reached.");
                 }
                 break;
             }
             if (verbose) {
-                System.out.printf("[TRAIN] Cost on epoch %d/%d: %f\n", epoch + 1, epochs, costFunction(feedForward(trainingInputs), trainingOutputs));
+                System.out.printf("[TRAIN] Cost on epoch %d/%d: %f\n", epoch + 1, epochs, costFunction());
             }
         }
 
