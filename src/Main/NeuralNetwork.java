@@ -1,6 +1,10 @@
 package Main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class NeuralNetwork {
@@ -20,9 +24,14 @@ public class NeuralNetwork {
     private long storedTime;
 
     public static void main(String[] args) {
-        int NUM_EPOCHS = 10000;
-        NeuralNetwork.trainOnce(Datasets.getXOR(), NUM_EPOCHS, true);
-
+        NeuralNetwork network = Datasets.getAddFour();
+        for (int i = 0; i < 1000; i++) {
+            double[][][] io = Datasets.getIOForFourAdder(100);
+            network.setTrainingIO(io[0], io[1]);
+            network.train(10000, 0, 1E-5, false);
+            System.out.println(i);
+        }
+        saveNetwork(network, "four-adder", true);
     }
     public static void trainOnce(NeuralNetwork network, int NUM_EPOCHS, boolean verbose) {
         network.storedTime = System.currentTimeMillis();
@@ -30,7 +39,97 @@ public class NeuralNetwork {
         network.printTimeDetails(NUM_EPOCHS);
         network.printCostDetails();
     }
+    public static void saveNetwork(NeuralNetwork network, String name, boolean autoOverwrite) {
+        String path = "data/" + name + ".txt";
+        PrintWriter writer;
+        File f = new File(path);
+        System.out.printf("[SAVING NETWORK] Saving network to file with path %s...\n", path);
+        if (!autoOverwrite && f.exists()) {
+            System.out.printf("[SAVING NETWORK] File %s already exists. Overwrite? (type YES  to overwrite or anything else not to) \n", path);
+            Scanner input = new Scanner(System.in);
+            String response = input.nextLine();
+            if (!response.equals("YES")) {
+                System.out.println("[SAVING NETWORK] Network saving aborted.");
+                return;
+            }
+        }
+        try {
+            writer = new PrintWriter(path);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        Arrays.stream(network.layerLengths).forEach(length -> writer.append(String.valueOf(length)).append(" "));
+        writer.println("\n");
 
+        for (Layer layer : network.layers) {
+            writer.println(layer.weights.toStringValues());
+            writer.println(layer.biases.toStringValues());
+        }
+        writer.close();
+        System.out.printf("[SAVING NETWORK] Network saved successfully to filepath \"%s\".\n", path);
+
+
+    }
+    public static NeuralNetwork loadNetwork(String networkName) {
+        String path = "data/" + networkName + ".txt";
+        System.out.printf("[LOADING NETWORK] Loading network from filepath \"%s\".\n", path);
+        Scanner file;
+        try {
+            file = new Scanner(new File(path));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String lLengths = file.nextLine();
+        String[] lLengthsSplit = lLengths.strip().split(" ");
+        int[] layerLengths = new int[lLengthsSplit.length];
+        try {
+            for (int i = 0; i < layerLengths.length; i++) {
+                layerLengths[i] = Integer.parseInt(lLengthsSplit[i]);
+            }
+        }
+        catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Layer lengths in file are invalid.");
+        }
+
+        Layer[] layers = new Layer[layerLengths.length - 1];
+        for (int layerIndex = 0; layerIndex < layers.length; layerIndex++) {
+            file.nextLine(); // Get rid of empty space
+            int numNeurons = layerLengths[layerIndex + 1], previousLayerNeurons = layerLengths[layerIndex];
+            Matrix weightMatrix, biasMatrix;
+
+            weightMatrix = new Matrix(numNeurons, previousLayerNeurons);
+            biasMatrix = new Matrix(numNeurons, 1);
+
+            for (int rowIndex = 0; rowIndex < weightMatrix.getNumRows(); rowIndex++) {
+                for (int colIndex = 0; colIndex < weightMatrix.getNumCols(); colIndex++) {
+                    weightMatrix.set(rowIndex, colIndex, file.nextDouble());
+                }
+            }
+            file.nextLine(); // Get rid of empty space
+            for (int rowIndex = 0; rowIndex < biasMatrix.getNumRows(); rowIndex++) {
+                for (int colIndex = 0; colIndex < biasMatrix.getNumCols(); colIndex++) {
+                    biasMatrix.set(rowIndex, colIndex, file.nextDouble());
+                }
+            }
+            layers[layerIndex] = new Layer(numNeurons, previousLayerNeurons, weightMatrix, biasMatrix);
+        }
+        System.out.println("[LOADING NETWORK] Network loaded successfully.");
+        return new NeuralNetwork(layerLengths, layers);
+    }
+    public static void deleteNetwork(String networkName) {
+        String path = "data/" + networkName + ".txt";
+        File networkFile = new File(path);
+        if (!networkFile.exists()) {
+            System.out.printf("[NETWORK DELETION] Network with filepath \"%s\" doesn't exist.\n", path);
+            return;
+        }
+        if (networkFile.delete()) {
+            System.out.printf("[NETWORK DELETION] Network with filepath \"%s\" successfully deleted.\n", path);
+        }
+        else {
+            System.out.printf("[NETWORK DELETION] Failed to delete network with filepath \"%s\".\n", path);
+        }
+    }
     public static void runBenchmarks(NeuralNetwork originalNetwork, int NUM_TRIALS, int NUM_EPOCHS) {
         long initialTime = System.currentTimeMillis();
         double totalCost = 0;
@@ -82,18 +181,25 @@ public class NeuralNetwork {
 
     // Unknown layers, given activations
     public NeuralNetwork(int[] layerLengths, Activation innerActivation, Activation outerActivation) {
-        this(layerLengths, new Layer[layerLengths.length - 1], innerActivation, outerActivation);
+        this(layerLengths, null, innerActivation, outerActivation);
     }
 
     // Unknown layers, not given activations
     public NeuralNetwork(int[] layerLengths) {
-        this(layerLengths, new Layer[layerLengths.length - 1], Activation.Sigmoid, Activation.Sigmoid);
+        this(layerLengths, null, Activation.Sigmoid, Activation.Sigmoid);
     }
 
     private void initLayers(Layer[] layers) {
+        if (layers == null) {
+            initLayers();
+            return;
+        }
         this.layers = layers;
+    }
+    private void initLayers() {
+        this.layers = new Layer[this.layerLengths.length - 1];
         this.layers[0] = new Layer(layerLengths[1], inputLength);
-        for (int i = 0; i < this.layers.length; i++) {
+        for (int i = 1; i < this.layers.length; i++) {
             this.layers[i] = new Layer(layerLengths[i + 1], layerLengths[i]);
         }
     }
@@ -268,12 +374,12 @@ public class NeuralNetwork {
             this.backprop();
             if (epoch % 100 == 0 && costFunction(this.trainingOutputs, this.feedForward(this.trainingInputs)) < errorThreshold) {
                 if (verbose) {
-                    System.out.println("[TRAIN]: Training ended early because error threshold was reached.");
+                    System.out.println("[TRAIN] Training ended early because error threshold was reached.");
                 }
                 break;
             }
             if (verbose) {
-                System.out.printf("[TRAIN]: Cost on epoch %d/%d: %f\n", epoch + 1, epochs, costFunction(feedForward(trainingInputs), trainingOutputs));
+                System.out.printf("[TRAIN] Cost on epoch %d/%d: %f\n", epoch + 1, epochs, costFunction(feedForward(trainingInputs), trainingOutputs));
             }
         }
 

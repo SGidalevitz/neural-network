@@ -143,6 +143,14 @@ public class Datasets {
         }
         return bits;
     }
+    public static NeuralNetwork getAddFour() {
+        int[] networkTopology = {4, 4, 2, 1};
+        double[][][] io = getIOForFourAdder(100);
+        NeuralNetwork network = new NeuralNetwork(networkTopology, Activation.Sigmoid, Activation.Sigmoid);
+        network.setTrainingIO(io[0], io[1]);
+        return network;
+
+    }
     public static void printIO(double[][] inputData, double[][] outputData) {
         System.out.println("Input data = {");
         for (double[] inputDatum : inputData) {
@@ -163,5 +171,20 @@ public class Datasets {
         }
         System.out.println("}\n");
 
+    }
+    public static double[][][] getIOForFourAdder(int numSamples) {
+        double[][] input_data = new double[numSamples][4];
+        double[][] output_data = new double[numSamples][1];
+        for (int i = 0; i < numSamples; i++) {
+            double sum = 0;
+            double[] data = new double[4];
+            for (int j = 0; j < 4; j++) {
+                data[j] = Math.random() / 4;
+                sum += data[j];
+            }
+            input_data[i] = data;
+            output_data[i] = new double[]{sum};
+        }
+        return new double[][][]{input_data, output_data};
     }
 }

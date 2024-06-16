@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bae8e4f6-295c-4164-8b60-e96d042f5c06" name="Changes" comment="Created">
+    <list default="true" id="bae8e4f6-295c-4164-8b60-e96d042f5c06" name="Changes" comment="Deleted some unnecessary stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Datasets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Datasets.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/NeuralNetwork.java" afterDir="false" />
@@ -84,6 +84,9 @@
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="Main.Utils.Activation" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="Main" />
@@ -237,7 +240,7 @@
       <workItem from="1718381897149" duration="599000" />
       <workItem from="1718469342860" duration="68000" />
       <workItem from="1718469652567" duration="15333000" />
-      <workItem from="1718490008544" duration="3977000" />
+      <workItem from="1718490008544" duration="9418000" />
     </task>
     <task id="LOCAL-00001" summary="Created">
       <option name="closed" value="true" />
@@ -247,7 +250,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718495000036</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Deleted some unnecessary stuff">
+      <option name="closed" value="true" />
+      <created>1718495668343</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718495668343</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +277,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created" />
+    <MESSAGE value="Deleted some unnecessary stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted some unnecessary stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -315,6 +327,11 @@
         <PinnedItemInfo parentTag="Main.Matrix" memberName="arr" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="lLengths" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
