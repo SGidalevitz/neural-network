@@ -1,5 +1,16 @@
 package Main;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.zip.GZIPInputStream;
+
 public class Datasets {
 
     public static NeuralNetwork getXOR() {
@@ -186,5 +197,64 @@ public class Datasets {
             output_data[i] = new double[]{sum};
         }
         return new double[][][]{input_data, output_data};
+    }
+    public static NeuralNetwork getMnist() {
+        int[] networkTopology = {28 * 28, 16, 16, 10};
+        double[][][] IO = getMnistIO();
+        NeuralNetwork network = new NeuralNetwork(networkTopology);
+        network.setTrainingIO(IO[0], IO[1]);
+        return network;
+    }
+    public static double[][][] getMnistIO() {
+        String trainImagesPath = "mnist-data/train-inputs.gz";
+        String trainLabelsPath = "mnist-data/train-outputs.gz";
+        double[][] inputs = null, outputs = null;
+        try {
+            InputStream imgIn = new GZIPInputStream(new FileInputStream(trainImagesPath));
+            InputStream lblIn = new GZIPInputStream(new FileInputStream(trainLabelsPath));
+
+            byte[] tempBuffer = new byte[16];
+            imgIn.read(tempBuffer, 0, 16);
+            lblIn.read(tempBuffer, 0, 16);
+
+            byte[] dataBuffer = new byte[1];
+            String[] labels = new String[60000];
+            float[][][] images = new float[60000][28][28];
+            for (int i = 0; i < 60000; i++){
+                System.out.printf("Iter: %d/60000\n", i + 1);
+                lblIn.read(dataBuffer, 0, 1);
+                labels[i] = Integer.toString(dataBuffer[0] & 0xFF);
+
+                for (int j = 0; j < 784; j++){
+                    imgIn.read(dataBuffer, 0, 1);
+                    float pixelVal = (dataBuffer[0] & 0xFF) / 255.f;
+                    images[i][j / 28][j % 28] = pixelVal;
+                }
+            }
+            inputs = new double[60000][28 * 28];
+            outputs = new double[labels.length][10];
+            for (int i = 0; i < labels.length; i++) {
+                int value = Integer.parseInt(labels[i]);
+                for (int j = 0; j < 10; j++) {
+                    outputs[i][j] = j == value ? 1 : 0;
+                }
+            }
+
+            for (int i = 0; i < 60000; i++) {
+                float[][] arr = images[i];
+                double[] input = new double[28 * 28];
+                for (int row = 0; row < 28; row++) {
+                    for (int col = 0; col < 28; col++) {
+                        input[row * 28 + col] = arr[row][col];
+                    }
+                }
+                inputs[i] = input;
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new double[][][]{inputs, outputs};
     }
 }

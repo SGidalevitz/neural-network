@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bae8e4f6-295c-4164-8b60-e96d042f5c06" name="Changes" comment="Deleted some unnecessary stuff">
+    <list default="true" id="bae8e4f6-295c-4164-8b60-e96d042f5c06" name="Changes" comment="Added the ability to save, load, and delete networks as txt files.">
+      <change afterPath="$PROJECT_DIR$/mnist-data/train-inputs.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-data/train-outputs.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Datasets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Datasets.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/NeuralNetwork.java" afterDir="false" />
@@ -25,11 +27,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="JavaAutoRunManager">
     <enabled-run-configurations>
       <run-configuration type="JUnit" name="NeuralNetworkTest.testFeedForwardBigNetwork" />
     </enabled-run-configurations>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -86,7 +92,9 @@
       <recent name="Main.Utils.Activation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mnist-data" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/.idea" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="Main" />
@@ -240,7 +248,7 @@
       <workItem from="1718381897149" duration="599000" />
       <workItem from="1718469342860" duration="68000" />
       <workItem from="1718469652567" duration="15333000" />
-      <workItem from="1718490008544" duration="9418000" />
+      <workItem from="1718490008544" duration="15943000" />
     </task>
     <task id="LOCAL-00001" summary="Created">
       <option name="closed" value="true" />
@@ -258,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718495668343</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added the ability to save, load, and delete networks as txt files.">
+      <option name="closed" value="true" />
+      <created>1718504350892</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718504350892</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +294,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created" />
     <MESSAGE value="Deleted some unnecessary stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted some unnecessary stuff" />
+    <MESSAGE value="Added the ability to save, load, and delete networks as txt files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the ability to save, load, and delete networks as txt files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -310,6 +327,24 @@
           </properties>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Main/NeuralNetwork.java</url>
+          <line>37</line>
+          <properties class="Main.NeuralNetwork" method="batchTrain">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Main/NeuralNetwork.java</url>
+          <line>315</line>
+          <properties class="Main.NeuralNetwork" method="backprop">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Tests/NeuralNetworkTest.java</url>
           <line>208</line>
@@ -327,11 +362,6 @@
         <PinnedItemInfo parentTag="Main.Matrix" memberName="arr" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="lLengths" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
